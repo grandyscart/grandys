@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Grandys Cart</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+}
+
+/* LOGIN SCREENS */
+
+.login-container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#111;
+}
+
+.login-box{
+background:white;
+padding:40px;
+border-radius:10px;
+width:320px;
+text-align:center;
+}
+
+.login-box input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:black;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* WEBSITE */
+
+#site{
+display:none;
+}
+
+header{
+background:#000;
+text-align:center;
+padding:40px;
+}
+
+header h1{
+font-family:'Playfair Display',serif;
+font-size:52px;
+margin:0;
+color:#FFD84D;
+letter-spacing:3px;
+}
+
+.tagline{
+color:white;
+margin-top:10px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+padding:60px;
+max-width:1200px;
+margin:auto;
+}
+
+.product{
+border-radius:10px;
+height:250px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff4b5;
+cursor:pointer;
+transition:0.3s;
+font-size:18px;
+}
+
+.product:hover{
+transform:scale(1.05);
+box-shadow:0 10px 30px rgba(255,210,0,0.4);
+}
+
+footer{
+background:black;
+color:#FFD84D;
+text-align:center;
+padding:25px;
+}
+
+</style>
+
+<script>
+
+function checkGmail(){
+
+let email=document.getElementById("gmail").value;
+
+if(!email.endsWith("@gmail.com")){
+alert("Error: Please enter a Gmail address ending with @gmail.com");
+return;
+}
+
+document.getElementById("gmailLogin").style.display="none";
+document.getElementById("passwordLogin").style.display="flex";
+
+}
+
+function passwordLogin(){
+
+let pass=document.getElementById("grandypass").value;
+
+let saved=localStorage.getItem("grandysPassword");
+
+if(saved==null){
+
+localStorage.setItem("grandysPassword",pass);
+alert("Password created successfully!");
+
+showSite();
+
+}else{
+
+if(pass===saved){
+showSite();
+}else{
+alert("Wrong Grandys Password!");
+}
+
+}
+
+}
+
+function showSite(){
+
+document.getElementById("passwordLogin").style.display="none";
+document.getElementById("site").style.display="block";
+
+}
+
+function openInsta(){
+window.open("https://www.instagram.com/grandys_cart/","_blank");
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- GMAIL LOGIN -->
+
+<div id="gmailLogin" class="login-container">
+
+<div class="login-box">
+
+<h2>Login with Gmail</h2>
+
+<input type="text" id="gmail" placeholder="Enter Gmail">
+
+<button onclick="checkGmail()">Continue</button>
+
+</div>
+
+</div>
+
+<!-- PASSWORD LOGIN -->
+
+<div id="passwordLogin" class="login-container" style="display:none;">
+
+<div class="login-box">
+
+<h2>Enter Grandys Password</h2>
+
+<input type="password" id="grandypass" placeholder="Enter Password">
+
+<button onclick="passwordLogin()">Login</button>
+
+</div>
+
+</div>
+
+<!-- WEBSITE -->
+
+<div id="site">
+
+<header>
+<h1>Grandys Cart</h1>
+<p class="tagline">Feel the Grandness in Grandys</p>
+</header>
+
+<div class="products">
+
+<div class="product" onclick="openInsta()">Product Coming Soon</div>
+<div class="product" onclick="openInsta()">Product Coming Soon</div>
+<div class="product" onclick="openInsta()">Product Coming Soon</div>
+<div class="product" onclick="openInsta()">Product Coming Soon</div>
+
+</div>
+
+<footer>
+© 2026 Grandys Cart
+</footer>
+
+</div>
+
+</body>
+</html>
