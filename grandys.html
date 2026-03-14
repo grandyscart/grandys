@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Grandys Cart Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+}
+
+/* LOGIN CONTAINER */
+.login-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:#111;
+}
+
+.login-box{
+  background:white;
+  padding:40px;
+  border-radius:10px;
+  width:350px;
+  text-align:center;
+}
+
+.login-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.login-box button{
+  width:100%;
+  padding:10px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.error-msg{
+  color:red;
+  font-size:14px;
+  margin-top:-5px;
+  margin-bottom:10px;
+  display:none;
+}
+
+/* WEBSITE */
+#site{
+  display:none;
+}
+
+header{
+  background:#000;
+  text-align:center;
+  padding:40px;
+}
+
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:52px;
+  margin:0;
+  color:#FFD84D;
+  letter-spacing:3px;
+}
+
+.tagline{
+  color:white;
+  margin-top:10px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  padding:60px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.product{
+  border-radius:10px;
+  height:250px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff4b5;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:18px;
+}
+
+.product:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 30px rgba(255,210,0,0.4);
+}
+
+footer{
+  background:black;
+  color:#FFD84D;
+  text-align:center;
+  padding:25px;
+}
+</style>
+</head>
+<body>
+
+<!-- STEP 1: GMAIL LOGIN -->
+<div id="gmailLogin" class="login-container">
+  <div class="login-box">
+    <h2>Login with Gmail</h2>
+    <input type="text" id="gmail" placeholder="Enter Gmail">
+    <div id="gmailError" class="error-msg">Enter your Gmail properly</div>
+    <button onclick="checkGmail()">Next</button>
+  </div>
+</div>
+
+<!-- STEP 2: GMAIL PASSWORD -->
+<div id="gmailPassword" class="login-container" style="display:none;">
+  <div class="login-box">
+    <h2>Enter Gmail Password</h2>
+    <input type="password" id="gmailPass" placeholder="Enter Gmail Password">
+    <div id="passError" class="error-msg">Enter your Gmail password</div>
+    <button onclick="checkPassword()">Login</button>
+  </div>
+</div>
+
+<!-- GRANDYS CART WEBSITE -->
+<div id="site">
+  <header>
+    <h1>Grandys Cart</h1>
+    <p class="tagline">Feel the Grandness in Grandys</p>
+  </header>
+
+  <div class="products">
+    <div class="product" onclick="openInsta()">Product Coming Soon</div>
+    <div class="product" onclick="openInsta()">Product Coming Soon</div>
+    <div class="product" onclick="openInsta()">Product Coming Soon</div>
+    <div class="product" onclick="openInsta()">Product Coming Soon</div>
+  </div>
+
+  <footer>© 2026 Grandys Cart</footer>
+</div>
+
+<script>
+function openInsta(){
+  window.open("https://www.instagram.com/grandys_cart/","_blank");
+}
+
+// STEP 1: Check Gmail
+function checkGmail(){
+  let email = document.getElementById("gmail").value;
+  let gmailError = document.getElementById("gmailError");
+
+  if(email.trim() === "" || !email.endsWith("@gmail.com")){
+    gmailError.style.display="block";
+    return;
+  }
+  gmailError.style.display="none";
+  document.getElementById("gmailLogin").style.display="none";
+  document.getElementById("gmailPassword").style.display="flex";
+}
+
+// STEP 2: Check Gmail password
+function checkPassword(){
+  let pass = document.getElementById("gmailPass").value;
+  let passError = document.getElementById("passError");
+
+  if(pass.trim()===""){
+    passError.style.display="block";
+    return;
+  }
+  passError.style.display="none";
+
+  // Successful login → show website
+  document.getElementById("gmailPassword").style.display="none";
+  document.getElementById("site").style.display="block";
+}
+</script>
+
+</body>
+</html>
